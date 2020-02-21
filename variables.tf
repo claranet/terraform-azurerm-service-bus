@@ -1,17 +1,22 @@
 variable "client_name" {
-  type = string
+  description = "Client name/account used in naming"
+  type        = string
+
 }
 
 variable "environment" {
-  type = string
+  description = "Project environment"
+  type        = string
 }
 
 variable "stack" {
-  type = string
+  description = "Project stack name"
+  type        = string
 }
 
 variable "resource_group_name" {
-  type = string
+  description = "Name of the resource group"
+  type        = string
 }
 
 variable "location" {
@@ -31,6 +36,6 @@ variable "extra_tags" {
 }
 
 variable "servicebus_namespaces_queues" {
-  type        = map(any)
-  description = ""
+  type        = any
+  description = "Map to handle Servicebus creation. It supports the creation of the queues, authorization_rule associated with each namespace you create"
 }
