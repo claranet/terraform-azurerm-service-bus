@@ -1,4 +1,5 @@
 # Azure Service Bus feature
+[![Changelog](https://img.shields.io/badge/changelog-release-green.svg)](CHANGELOG.md) [![Notice](https://img.shields.io/badge/notice-copyright-yellow.svg)](NOTICE) [![Apache V2 License](https://img.shields.io/badge/license-Apache%20V2-orange.svg)](LICENSE) [![TF Registry](https://img.shields.io/badge/terraform-registry-blue.svg)](https://registry.terraform.io/modules/claranet/service-bus/azurerm/)
 
 This Terraform module creates an [Azure Service Bus](https://docs.microsoft.com/en-us/azure/service-bus/).
 
@@ -6,14 +7,13 @@ This Terraform module creates an [Azure Service Bus](https://docs.microsoft.com/
 
 * [AzureRM Terraform provider](https://www.terraform.io/docs/providers/azurerm/) >= 1.32
 
-## Terraform version compatibility
+## Version compatibility
 
 | Module version    | Terraform version | AzureRM version |
 |-------------------|-------------------|-----------------|
 | >= 3.x.x          | 0.12.x            | >= 2.0          |
 | >= 2.x.x, < 3.x.x | 0.12.x            | <  2.0          |
 | <  2.x.x          | 0.11.x            | <  2.0          |
-
 
 ## Usage
 
@@ -42,7 +42,7 @@ module "rg" {
 }
 
 module "servicebus" {
-  source  = "claranet/service_bus/azurerm"
+  source  = "claranet/service-bus/azurerm"
   version = "x.x.x"
 
   location       = module.azure-region.location
@@ -125,4 +125,4 @@ module "servicebus" {
 Terraform resource documentation on Servicebus namespace: [terraform.io/docs/providers/azurerm/r/servicebus_namespace.html](https://www.terraform.io/docs/providers/azurerm/r/servicebus_namespace.html)
 Terraform resource documentation on Servicebus queue: [terraform.io/docs/providers/azurerm/r/servicebus_queue.html](https://www.terraform.io/docs/providers/azurerm/r/servicebus_queue.html)
 
-Microsoft Azure documentation: [https://docs.microsoft.com/en-us/azure/service-bus/](https://docs.microsoft.com/en-us/azure/service-bus/)
+Microsoft Azure documentation: [docs.microsoft.com/en-us/azure/service-bus/](https://docs.microsoft.com/en-us/azure/service-bus/)

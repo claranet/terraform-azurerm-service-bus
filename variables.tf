@@ -1,7 +1,6 @@
 variable "client_name" {
   description = "Client name/account used in naming"
   type        = string
-
 }
 
 variable "environment" {
