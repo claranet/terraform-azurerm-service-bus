@@ -1,3 +1,8 @@
+# Unreleased
+
+Fixed
+  * AZ-411: Fix outputs
+
 # v2.0.0/v3.0.0 - 2020-03-30
 
 Added
