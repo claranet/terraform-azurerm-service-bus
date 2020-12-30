@@ -1,4 +1,7 @@
-# Unreleased
+# v3.0.1/v4.0.0
+
+Updated
+  * AZ-273: Module now compatible terraform `v0.13+`
 
 Fixed
   * AZ-411: Fix outputs
