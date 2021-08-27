@@ -6,7 +6,8 @@ This Terraform module creates an [Azure Service Bus](https://docs.microsoft.com/
 ## Version compatibility
 
 | Module version | Terraform version | AzureRM version |
-|----------------|-------------------| --------------- |
+| -------------- | ----------------- | --------------- |
+| >= 5.x.x       | 0.15.x & 1.0.x    | >= 2.0          |
 | >= 4.x.x       | 0.13.x            | >= 2.0          |
 | >= 3.x.x       | 0.12.x            | >= 2.0          |
 | >= 2.x.x       | 0.12.x            | < 2.0           |
@@ -94,6 +95,27 @@ module "servicebus" {
 
 ```
 
+<!-- BEGIN_TF_DOCS -->
+## Providers
+
+| Name | Version |
+|------|---------|
+| azurerm | >= 1.32 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [azurerm_servicebus_namespace.servicebus_namespace](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/servicebus_namespace) | resource |
+| [azurerm_servicebus_queue.queue](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/servicebus_queue) | resource |
+| [azurerm_servicebus_queue_authorization_rule.manage](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/servicebus_queue_authorization_rule) | resource |
+| [azurerm_servicebus_queue_authorization_rule.reader](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/servicebus_queue_authorization_rule) | resource |
+| [azurerm_servicebus_queue_authorization_rule.sender](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/servicebus_queue_authorization_rule) | resource |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -116,11 +138,7 @@ module "servicebus" {
 | queues | Service Bus queues map |
 | readers | Service Bus "readers" authorization rules map |
 | senders | Service Bus "sender" authorization rules map |
-
+<!-- END_TF_DOCS -->
 ## Related documentation
-
-Terraform resource documentation on Service Bus namespace: [terraform.io/docs/providers/azurerm/r/servicebus_namespace.html](https://www.terraform.io/docs/providers/azurerm/r/servicebus_namespace.html)
-
-Terraform resource documentation on Service Bus queue: [terraform.io/docs/providers/azurerm/r/servicebus_queue.html](https://www.terraform.io/docs/providers/azurerm/r/servicebus_queue.html)
 
 Microsoft Azure documentation: [docs.microsoft.com/en-us/azure/service-bus/](https://docs.microsoft.com/en-us/azure/service-bus/)
