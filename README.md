@@ -4,7 +4,7 @@
 This Terraform module creates an [Azure Service Bus](https://docs.microsoft.com/en-us/azure/service-bus/).
 
 <!-- BEGIN_TF_DOCS -->
-## Global versionning rule for Claranet Azure modules
+## Global versioning rule for Claranet Azure modules
 
 | Module version | Terraform version | AzureRM version |
 | -------------- | ----------------- | --------------- |
