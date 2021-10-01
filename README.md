@@ -3,7 +3,8 @@
 
 This Terraform module creates an [Azure Service Bus](https://docs.microsoft.com/en-us/azure/service-bus/).
 
-## Version compatibility
+<!-- BEGIN_TF_DOCS -->
+## Global versioning rule for Claranet Azure modules
 
 | Module version | Terraform version | AzureRM version |
 | -------------- | ----------------- | --------------- |
@@ -19,10 +20,8 @@ This module is optimized to work with the [Claranet terraform-wrapper](https://g
 which set some terraform variables in the environment needed by this module.
 More details about variables set by the `terraform-wrapper` available in the [documentation](https://github.com/claranet/terraform-wrapper#environment).
 
-You can use this module by including it this way:
-
 ```hcl
-module "azure-region" {
+module "azure_region" {
   source  = "claranet/regions/azurerm"
   version = "x.x.x"
 
@@ -33,7 +32,7 @@ module "rg" {
   source  = "claranet/rg/azurerm"
   version = "x.x.x"
 
-  location    = module.azure-region.location
+  location    = module.azure_region.location
   client_name = var.client_name
   environment = var.environment
   stack       = var.stack
@@ -43,8 +42,8 @@ module "servicebus" {
   source  = "claranet/service-bus/azurerm"
   version = "x.x.x"
 
-  location       = module.azure-region.location
-  location_short = module.azure-region.location_short
+  location       = module.azure_region.location
+  location_short = module.azure_region.location_short
   client_name    = var.client_name
   environment    = var.environment
   stack          = var.stack
@@ -65,7 +64,7 @@ module "servicebus" {
 
     # Or customize everything
     servicebus2 = {
-      custom_name = format("%s-%s-%s-custom", var.stack, var.client_name, module.azure-region.location_short)
+      custom_name = format("%s-%s-%s-custom", var.stack, var.client_name, module.azure_region.location_short)
       sku         = "Premium"
       capacity    = 2
 
@@ -84,7 +83,7 @@ module "servicebus" {
           duplicate_detection_history_time_window = "PT30M"
           sender                                  = true
         }
-        queue400 = {  
+        queue400 = {
           requires_duplicate_detection = true
           manage                       = true
         }
@@ -95,7 +94,6 @@ module "servicebus" {
 
 ```
 
-<!-- BEGIN_TF_DOCS -->
 ## Providers
 
 | Name | Version |
