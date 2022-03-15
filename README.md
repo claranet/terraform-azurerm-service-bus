@@ -119,6 +119,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | client\_name | Client name/account used in naming | `string` | n/a | yes |
+| default\_tags\_enabled | Option to enable or disable default tags | `bool` | `true` | no |
 | environment | Project environment | `string` | n/a | yes |
 | extra\_tags | Extra tags to add | `map(string)` | `{}` | no |
 | location | Azure location for Servicebus. | `string` | n/a | yes |
