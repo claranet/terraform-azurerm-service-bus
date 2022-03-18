@@ -1,6 +1,6 @@
 resource "azurerm_servicebus_queue" "queue" {
   for_each            = toset(local.queues_list)
-  name                = split("|", each.key)[1]
+  name                = var.use_caf_naming ? azurecaf_name.servicebus_queue[each.key].result : split("|", each.key)[1]
   resource_group_name = var.resource_group_name
   namespace_name      = azurerm_servicebus_namespace.servicebus_namespace[split("|", each.key)[0]].name
 
