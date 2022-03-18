@@ -28,12 +28,6 @@ variable "location_short" {
   type        = string
 }
 
-variable "extra_tags" {
-  description = "Extra tags to add"
-  type        = map(string)
-  default     = {}
-}
-
 variable "servicebus_namespaces_queues" {
   type        = any
   description = "Map to handle Servicebus creation. It supports the creation of the queues, authorization_rule associated with each namespace you create"
