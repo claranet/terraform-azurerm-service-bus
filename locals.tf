@@ -1,7 +1,4 @@
 locals {
-  # Generate a default name
-  default_name = "${var.stack}-${var.client_name}-${var.location_short}-${var.environment}"
-
   # Generate a list of queues to create
   queues_list = flatten(
     [for namespace, values in var.servicebus_namespaces_queues :

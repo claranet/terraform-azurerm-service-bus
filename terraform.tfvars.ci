@@ -1,15 +1,15 @@
-location="fr-central"
-location_short="frc"
-client_name="test"
-environment="test"
-stack="ci"
-resource_group_name="ci"
-sku="Basic"
+location            = "fr-central"
+location_short      = "frc"
+client_name         = "test"
+environment         = "test"
+stack               = "ci"
+resource_group_name = "ci"
+sku                 = "Basic"
 servicebus_namespaces_queues = {
-    servicebus1 = {
-      queues = {
-        queue1 = {}
-        queue2 = {}
-      }
+  servicebus1 = {
+    queues = {
+      queue1 = {}
+      queue2 = {}
     }
+  }
 }

@@ -1,6 +1,6 @@
 resource "azurerm_servicebus_namespace" "servicebus_namespace" {
   for_each            = var.servicebus_namespaces_queues
-  name                = lookup(each.value, "custom_name", format("%s-%s-bus", local.default_name, each.key))
+  name                = lookup(each.value, "custom_name", azurecaf_name.servicebus_namespace[each.key].result)
   location            = var.location
   resource_group_name = var.resource_group_name
 
@@ -8,7 +8,7 @@ resource "azurerm_servicebus_namespace" "servicebus_namespace" {
   capacity = lookup(each.value, "capacity", lookup(each.value, "sku", "Basic") == "Premium" ? 1 : 0)
 
   tags = merge(
+    local.default_tags,
     var.extra_tags,
-    local.default_tags
   )
 }
