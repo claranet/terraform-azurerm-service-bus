@@ -1,3 +1,8 @@
+# unreleased
+
+Added
+  * [GH-4](https://github.com/claranet/terraform-azurerm-service-bus/issues/4): Add `zone_redundant` parameter in namespaces.
+
 # v6.0.0 - 2022-06-24
 
 Breaking
