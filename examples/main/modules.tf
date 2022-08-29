@@ -53,9 +53,10 @@ module "servicebus" {
 
     # Or customize everything
     servicebus2 = {
-      custom_name = format("%s-%s-%s-custom", var.stack, var.client_name, module.azure_region.location_short)
-      sku         = "Premium"
-      capacity    = 2
+      custom_name    = format("%s-%s-%s-custom", var.stack, var.client_name, module.azure_region.location_short)
+      sku            = "Premium"
+      capacity       = 2
+      zone_redundant = true
 
       queues = {
         queue100 = {
