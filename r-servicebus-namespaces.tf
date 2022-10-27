@@ -6,7 +6,7 @@ resource "azurerm_servicebus_namespace" "servicebus_namespace" {
 
   sku            = lookup(each.value, "sku", "Basic")
   capacity       = lookup(each.value, "capacity", lookup(each.value, "sku", "Basic") == "Premium" ? 1 : 0)
-  zone_redundant = lookup(each.value, "zone_redundant")
+  zone_redundant = lookup(each.value, "zone_redundant", null)
 
   tags = merge(
     local.default_tags,
