@@ -1,4 +1,4 @@
-# Unreleased
+# v6.1.1 - 2022-10-28
 
 Fixed
   * AZ-888: Fix `zone_redundant` parameter in namespaces
