@@ -65,3 +65,59 @@ EOD
     public_network_access_enabled = optional(bool, true)
   })
 }
+
+variable "servicebus_queues" {
+  description = <<EOD
+List of objects to create queues with their options.
+```
+name          = Short queue name.
+custom_name   = Custom name for Azure resource.
+lock_duration = Duration of a peek-lock (in minutes); that is, the amount of time that the message is locked for other receivers. Maximum value is 5 minutes.
+
+max_message_size_in_kilobytes = Integer value which controls the maximum size of a message allowed on the queue for Premium SKU.
+max_size_in_megabytes         = Integer value which controls the size of memory allocated for the queue.
+max_delivery_count            = nteger value which controls when a message is automatically dead lettered.
+requires_duplicate_detection  = Boolean flag which controls whether the Queue requires duplicate detection.
+requires_session              = Boolean flag which controls whether the Queue requires sessions. This will allow ordered handling of unbounded sequences of related messages. With sessions enabled a queue can guarantee first-in-first-out delivery of messages.
+default_message_ttl           = Duration in minutes of the TTL of messages sent to this queue.
+
+status = The status of the Queue. Possible values are `Active`, `Creating`, `Deleting`, `Disabled`, `ReceiveDisabled`, `Renaming`, `SendDisabled`, `Unknown`. Note that Restoring is not accepted.
+
+dead_lettering_on_message_expiration    = Boolean flag which controls whether the Queue has dead letter support when a message expires.
+duplicate_detection_history_time_window = Duration in minutes during which duplicates can be detected.
+
+enable_batched_operations = Boolean flag which controls whether server-side batched operations are enabled.
+auto_delete_on_idle       = Duration in minutes of the idle interval after which the Queue is automatically deleted.
+enable_partitioning       = Boolean flag which controls whether to enable the queue to be partitioned across multiple message brokers. Partitioning is available at entity creation for all queues and topics in Basic or Standard SKUs.
+enable_express            = Boolean flag which controls whether Express Entities are enabled. An express queue holds a message in memory temporarily before writing it to persistent storage.
+
+forward_to                        = The name of a Queue or Topic to automatically forward messages to.
+forward_dead_lettered_messages_to = The name of a Queue or Topic to automatically forward dead lettered messages to.
+```
+EOD
+  type = list(object({
+    name                          = string
+    custom_name                   = optional(string)
+    lock_duration                 = optional(number, 1)
+    max_message_size_in_kilobytes = optional(number)
+    max_size_in_megabytes         = optional(number)
+    max_delivery_count            = optional(number, 10)
+    requires_duplicate_detection  = optional(bool)
+    requires_session              = optional(bool)
+    default_message_ttl           = optional(number)
+
+    status = optional(string, "Active")
+
+    dead_lettering_on_message_expiration    = optional(bool)
+    duplicate_detection_history_time_window = optional(number, 10)
+
+    enable_batched_operations = optional(bool, true)
+    auto_delete_on_idle       = optional(number)
+    enable_partitioning       = optional(bool)
+    enable_express            = optional(bool)
+
+    forward_to                        = optional(string)
+    forward_dead_lettered_messages_to = optional(string)
+  }))
+  default = []
+}

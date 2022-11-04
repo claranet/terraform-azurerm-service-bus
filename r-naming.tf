@@ -9,7 +9,7 @@ resource "azurecaf_name" "servicebus_namespace" {
 }
 
 resource "azurecaf_name" "servicebus_queue" {
-  for_each = toset(local.queues_list)
+  for_each = { for q in var.servicebus_queues : q.name => q }
 
   name          = var.stack
   resource_type = "azurerm_servicebus_queue"

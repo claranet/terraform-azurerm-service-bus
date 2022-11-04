@@ -1,17 +1,28 @@
 resource "azurerm_servicebus_queue" "queue" {
-  for_each     = toset(local.queues_list)
-  name         = var.use_caf_naming ? azurecaf_name.servicebus_queue[each.key].result : split("|", each.key)[1]
-  namespace_id = azurerm_servicebus_namespace.servicebus_namespace[split("|", each.key)[0]].id
+  for_each = { for q in var.servicebus_queues : q.name => q }
 
-  auto_delete_on_idle                     = lookup(var.servicebus_namespaces_queues[split("|", each.key)[0]]["queues"][split("|", each.key)[1]], "auto_delete_on_idle", null)
-  default_message_ttl                     = lookup(var.servicebus_namespaces_queues[split("|", each.key)[0]]["queues"][split("|", each.key)[1]], "default_message_ttl", null)
-  duplicate_detection_history_time_window = lookup(var.servicebus_namespaces_queues[split("|", each.key)[0]]["queues"][split("|", each.key)[1]], "duplicate_detection_history_time_window", null)
-  enable_express                          = lookup(var.servicebus_namespaces_queues[split("|", each.key)[0]]["queues"][split("|", each.key)[1]], "enable_express", false)
-  enable_partitioning                     = lookup(var.servicebus_namespaces_queues[split("|", each.key)[0]]["queues"][split("|", each.key)[1]], "enable_partitioning", null)
-  lock_duration                           = lookup(var.servicebus_namespaces_queues[split("|", each.key)[0]]["queues"][split("|", each.key)[1]], "lock_duration", null)
-  max_size_in_megabytes                   = lookup(var.servicebus_namespaces_queues[split("|", each.key)[0]]["queues"][split("|", each.key)[1]], "max_size_in_megabytes", null)
-  requires_duplicate_detection            = lookup(var.servicebus_namespaces_queues[split("|", each.key)[0]]["queues"][split("|", each.key)[1]], "requires_duplicate_detection", null)
-  requires_session                        = lookup(var.servicebus_namespaces_queues[split("|", each.key)[0]]["queues"][split("|", each.key)[1]], "requires_session", null)
-  dead_lettering_on_message_expiration    = lookup(var.servicebus_namespaces_queues[split("|", each.key)[0]]["queues"][split("|", each.key)[1]], "dead_lettering_on_message_expiration", null)
-  max_delivery_count                      = lookup(var.servicebus_namespaces_queues[split("|", each.key)[0]]["queues"][split("|", each.key)[1]], "max_delivery_count", null)
+  name         = coalesce(each.value.custom_name, azurecaf_name.servicebus_queue[each.key].result)
+  namespace_id = azurerm_servicebus_namespace.servicebus_namespace.id
+
+  status = each.value.status
+
+  lock_duration                 = each.value.lock_duration != null ? format("PT%sM", each.value.lock_duration) : null
+  max_message_size_in_kilobytes = each.value.max_message_size_in_kilobytes
+  max_size_in_megabytes         = each.value.max_size_in_megabytes
+  requires_duplicate_detection  = each.value.requires_duplicate_detection
+  requires_session              = each.value.requires_session
+  default_message_ttl           = each.value.default_message_ttl != null ? format("PT%sM", each.value.default_message_ttl) : null
+
+  dead_lettering_on_message_expiration    = each.value.dead_lettering_on_message_expiration
+  duplicate_detection_history_time_window = each.value.duplicate_detection_history_time_window != null ? format("PT%sM", each.value.duplicate_detection_history_time_window) : null
+
+  max_delivery_count        = each.value.max_delivery_count
+  enable_batched_operations = each.value.enable_batched_operations
+  auto_delete_on_idle       = each.value.auto_delete_on_idle != null ? format("PT%sM", each.value.auto_delete_on_idle) : null
+
+  enable_partitioning = var.servicebus_namespace.sku != "Premium" ? each.value.enable_partitioning : false
+  enable_express      = var.servicebus_namespace.sku != "Premium" ? each.value.enable_express : false
+
+  forward_to                        = each.value.forward_to
+  forward_dead_lettered_messages_to = each.value.forward_dead_lettered_messages_to
 }
