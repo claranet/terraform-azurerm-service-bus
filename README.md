@@ -64,46 +64,8 @@ module "servicebus" {
 
   resource_group_name = module.rg.resource_group_name
 
-  servicebus_namespaces_queues = {
-    # You can just create a servicebus_namespace
-    servicebus0 = {}
-
-    # Or create a servicebus_namespace with some queues with default values
-    servicebus1 = {
-      queues = {
-        queue1 = {}
-        queue2 = {}
-      }
-    }
-
-    # Or customize everything
-    servicebus2 = {
-      custom_name    = format("%s-%s-%s-custom", var.stack, var.client_name, module.azure_region.location_short)
-      sku            = "Premium"
-      capacity       = 2
-      zone_redundant = true
-
-      queues = {
-        queue100 = {
-          reader = true
-          sender = true
-          manage = true
-        }
-        queue200 = {
-          dead_lettering_on_message_expiration = true
-          default_message_ttl                  = "PT10M"
-          reader                               = true
-        }
-        queue300 = {
-          duplicate_detection_history_time_window = "PT30M"
-          sender                                  = true
-        }
-        queue400 = {
-          requires_duplicate_detection = true
-          manage                       = true
-        }
-      }
-    }
+  namespace_parameters = {
+    sku = "Premium"
   }
 
   logs_destinations_ids = [
