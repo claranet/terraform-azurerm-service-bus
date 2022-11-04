@@ -41,7 +41,7 @@ variable "identity_ids" {
   default     = null
 }
 
-variable "servicebus_namespace" {
+variable "namespace_parameters" {
   description = <<EOD
 Object to handle Service Bus Namespace options.
 ```
@@ -64,6 +64,16 @@ EOD
 
     public_network_access_enabled = optional(bool, true)
   })
+}
+
+variable "namespace_authorizations" {
+  description = "Object to specify which Namespace authorizations need to be created."
+  type = object({
+    listen = optional(bool, true)
+    send   = optional(bool, true)
+    manage = optional(bool, true)
+  })
+  default = {}
 }
 
 variable "servicebus_queues" {

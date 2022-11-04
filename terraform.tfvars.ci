@@ -4,12 +4,5 @@ client_name         = "test"
 environment         = "test"
 stack               = "ci"
 resource_group_name = "ci"
-sku                 = "Basic"
-servicebus_namespaces_queues = {
-  servicebus1 = {
-    queues = {
-      queue1 = {}
-      queue2 = {}
-    }
-  }
-}
+
+namespace_parameters = {}

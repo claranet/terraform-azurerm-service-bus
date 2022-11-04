@@ -20,8 +20,8 @@ resource "azurerm_servicebus_queue" "queue" {
   enable_batched_operations = each.value.enable_batched_operations
   auto_delete_on_idle       = each.value.auto_delete_on_idle != null ? format("PT%sM", each.value.auto_delete_on_idle) : null
 
-  enable_partitioning = var.servicebus_namespace.sku != "Premium" ? each.value.enable_partitioning : false
-  enable_express      = var.servicebus_namespace.sku != "Premium" ? each.value.enable_express : false
+  enable_partitioning = var.namespace_parameters.sku != "Premium" ? each.value.enable_partitioning : false
+  enable_express      = var.namespace_parameters.sku != "Premium" ? each.value.enable_express : false
 
   forward_to                        = each.value.forward_to
   forward_dead_lettered_messages_to = each.value.forward_dead_lettered_messages_to
