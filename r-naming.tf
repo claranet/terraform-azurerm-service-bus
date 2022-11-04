@@ -28,7 +28,7 @@ resource "azurecaf_name" "servicebus_queue_auth_rule_reader" {
   name          = var.stack
   resource_type = "azurerm_servicebus_queue_authorization_rule"
   prefixes      = var.name_prefix == "" ? null : [local.name_prefix]
-  suffixes      = compact([var.client_name, var.location_short, var.environment, each.key, "reader", local.name_suffix])
+  suffixes      = compact([var.client_name, var.location_short, var.environment, split("|", each.key)[1], "reader", local.name_suffix])
   use_slug      = var.use_caf_naming
   clean_input   = true
   separator     = "-"
@@ -40,7 +40,7 @@ resource "azurecaf_name" "servicebus_queue_auth_rule_sender" {
   name          = var.stack
   resource_type = "azurerm_servicebus_queue_authorization_rule"
   prefixes      = var.name_prefix == "" ? null : [local.name_prefix]
-  suffixes      = compact([var.client_name, var.location_short, var.environment, each.key, "sender", local.name_suffix])
+  suffixes      = compact([var.client_name, var.location_short, var.environment, split("|", each.key)[1], "sender", local.name_suffix])
   use_slug      = var.use_caf_naming
   clean_input   = true
   separator     = "-"
@@ -52,7 +52,7 @@ resource "azurecaf_name" "servicebus_queue_auth_rule_manage" {
   name          = var.stack
   resource_type = "azurerm_servicebus_queue_authorization_rule"
   prefixes      = var.name_prefix == "" ? null : [local.name_prefix]
-  suffixes      = compact([var.client_name, var.location_short, var.environment, each.key, "manage", local.name_suffix])
+  suffixes      = compact([var.client_name, var.location_short, var.environment, split("|", each.key)[1], "manage", local.name_suffix])
   use_slug      = var.use_caf_naming
   clean_input   = true
   separator     = "-"
