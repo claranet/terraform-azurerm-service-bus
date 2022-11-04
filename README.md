@@ -118,7 +118,7 @@ module "servicebus" {
 | Name | Version |
 |------|---------|
 | azurecaf | ~> 1.1 |
-| azurerm | ~> 3.0 |
+| azurerm | ~> 3.28 |
 
 ## Modules
 
