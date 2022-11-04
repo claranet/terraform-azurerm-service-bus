@@ -1,9 +1,6 @@
-output "namespaces" {
-  description = "Service Bus namespaces map"
-  value = {
-    for namespace, config in var.servicebus_namespaces_queues :
-    namespace => azurerm_servicebus_namespace.servicebus_namespace[namespace]
-  }
+output "namespace" {
+  description = "Service Bus Namespace outputs."
+  value       = azurerm_servicebus_namespace.servicebus_namespace
 }
 
 output "queues" {

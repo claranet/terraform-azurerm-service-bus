@@ -150,6 +150,8 @@ module "servicebus" {
 | default\_tags\_enabled | Option to enable or disable default tags | `bool` | `true` | no |
 | environment | Project environment | `string` | n/a | yes |
 | extra\_tags | Extra tags to add | `map(string)` | `{}` | no |
+| identity\_ids | Specifies a list of User Assigned Managed Identity IDs to be assigned to this Service Bus. | `list(string)` | `null` | no |
+| identity\_type | Specifies the type of Managed Service Identity that should be configured on this Service Bus. Possible values are `SystemAssigned`, `UserAssigned`, `SystemAssigned, UserAssigned` (to enable both). | `string` | `"SystemAssigned"` | no |
 | location | Azure location for Servicebus. | `string` | n/a | yes |
 | location\_short | Short string for Azure location. | `string` | n/a | yes |
 | logs\_categories | Log categories to send to destinations. | `list(string)` | `null` | no |
@@ -159,7 +161,7 @@ module "servicebus" {
 | name\_prefix | Optional prefix for the generated name | `string` | `""` | no |
 | name\_suffix | Optional suffix for the generated name | `string` | `""` | no |
 | resource\_group\_name | Name of the resource group | `string` | n/a | yes |
-| servicebus\_namespaces\_queues | Map to handle Servicebus creation. It supports the creation of the queues, authorization\_rule associated with each namespace you create | `any` | n/a | yes |
+| servicebus\_namespace | Object to handle Service Bus Namespace options.<pre>custom_name         = To override default resource name, generated if not set.<br>sku                 = Defines which tier to use. Options are `Basic`, `Standard` or `Premium`.<br>capacity            = Specifies the capacity. When SKU is `Premium`, capacity can be 1, 2, 4, 8 or 16.<br>local_auth_enabled  = Whether or not SAS authentication is enabled for the Service Bus namespace.<br>zone_redundant      = Whether or not this resource is zone redundant. SKU needs to be `Premium`.<br>minimum_tls_version = The minimum supported TLS version for this Service Bus Namespace.<br>public_network_access_enabled = Is public network access enabled for the Service Bus Namespace?</pre> | <pre>object({<br>    custom_name         = optional(string)<br>    sku                 = optional(string, "Standard")<br>    capacity            = optional(number, 0)<br>    local_auth_enabled  = optional(bool, true)<br>    zone_redundant      = optional(bool, false)<br>    minimum_tls_version = optional(string, "1.2")<br><br>    public_network_access_enabled = optional(bool, true)<br>  })</pre> | n/a | yes |
 | stack | Project stack name | `string` | n/a | yes |
 | use\_caf\_naming | Use the Azure CAF naming provider to generate default resource name. `custom_name` override this if set. Legacy default name is used if this is set to `false`. | `bool` | `true` | no |
 
