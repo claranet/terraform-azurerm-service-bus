@@ -153,6 +153,8 @@ max_message_size_in_kilobytes = Integer value which controls the maximum size of
 max_size_in_megabytes         = Integer value which controls the size of memory allocated for the topic.
 requires_duplicate_detection  = Boolean flag which controls whether the Topic requires duplicate detection.
 support_ordering              = Boolean flag which controls whether the Topic supports ordering.
+
+subscriptions = List of subscriptions per topic
 ```
 EOD
   type = list(object({
@@ -174,5 +176,28 @@ EOD
     max_size_in_megabytes         = optional(number)
     requires_duplicate_detection  = optional(bool)
     support_ordering              = optional(bool)
+
+    # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/servicebus_subscription
+    subscriptions = optional(list(object({
+      name        = string
+      custom_name = optional(string)
+
+      max_delivery_count = number
+
+      status = optional(string, "Active")
+
+      auto_delete_on_idle       = optional(number)
+      enable_batched_operations = optional(bool, true)
+      requires_session          = optional(bool)
+      default_message_ttl       = optional(number)
+      lock_duration             = optional(number, 1)
+
+      dead_lettering_on_message_expiration      = optional(bool)
+      dead_lettering_on_filter_evaluation_error = optional(bool)
+
+      forward_to                        = optional(string)
+      forward_dead_lettered_messages_to = optional(string)
+    })), [])
   }))
+  default = []
 }

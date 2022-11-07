@@ -9,7 +9,7 @@ resource "azurecaf_name" "servicebus_namespace" {
 }
 
 resource "azurecaf_name" "servicebus_queue" {
-  for_each = { for q in var.servicebus_queues : q.name => q }
+  for_each = local.queues
 
   name          = var.stack
   resource_type = "azurerm_servicebus_queue"
@@ -33,12 +33,24 @@ resource "azurecaf_name" "servicebus_namespace_auth_rule" {
 }
 
 resource "azurecaf_name" "servicebus_topic" {
-  for_each = { for t in var.servicebus_topics : t.name => t }
+  for_each = local.topics
 
   name          = var.stack
   resource_type = "azurerm_servicebus_topic"
   prefixes      = var.name_prefix == "" ? null : [local.name_prefix]
   suffixes      = compact([var.client_name, var.location_short, var.environment, each.key, local.name_suffix])
+  use_slug      = var.use_caf_naming
+  clean_input   = true
+  separator     = "-"
+}
+
+resource "azurecaf_name" "servicebus_topic_sub" {
+  for_each = local.subscriptions
+
+  name          = var.stack
+  resource_type = "azurerm_servicebus_subscription"
+  prefixes      = var.name_prefix == "" ? null : [local.name_prefix]
+  suffixes      = compact([var.client_name, var.location_short, var.environment, each.value.sub_name, local.name_suffix])
   use_slug      = var.use_caf_naming
   clean_input   = true
   separator     = "-"
