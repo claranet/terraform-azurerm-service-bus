@@ -180,6 +180,8 @@ module "servicebus" {
 | namespace\_manage\_authorization\_rule | Service Bus namespace manage only authorization rule |
 | namespace\_send\_authorization\_rule | Service Bus namespace send only authorization rule |
 | queues | Service Bus queues outputs. |
+| subscriptions | Service Bus topics subscriptions outputs. |
+| topics | Service Bus topics outputs. |
 <!-- END_TF_DOCS -->
 ## Related documentation
 

@@ -20,5 +20,15 @@ output "namespace_manage_authorization_rule" {
 
 output "queues" {
   description = "Service Bus queues outputs."
-  value       = { for q in var.servicebus_queues : q.name => azurerm_servicebus_queue.queue[q.name] }
+  value       = { for q_name in keys(local.queues) : q_name => azurerm_servicebus_queue.queue[q_name] }
+}
+
+output "topics" {
+  description = "Service Bus topics outputs."
+  value       = { for t_name in keys(local.topics) : t_name => azurerm_servicebus_topic.topic[t_name] }
+}
+
+output "subscriptions" {
+  description = "Service Bus topics subscriptions outputs."
+  value       = { for s_name in keys(local.subscriptions) : s_name => azurerm_servicebus_subscription.topic_sub[s_name] }
 }
