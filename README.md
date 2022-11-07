@@ -68,6 +68,18 @@ module "servicebus" {
     sku = "Premium"
   }
 
+  namespace_authorizations = {
+    listen = true
+    send   = false
+  }
+
+  servicebus_queues = [{
+    name                = "myqueue"
+    default_message_ttl = 5 # 5min
+
+    dead_lettering_on_message_expiration = true
+  }]
+
   logs_destinations_ids = [
     module.logs.logs_storage_account_id,
     module.logs.log_analytics_workspace_id
