@@ -4,6 +4,9 @@ Breaking
   * AZ-840: Require Terraform 1.3+
   * AZ-900: Rework module code, minimum AzureRM version to `v3.28`
 
+Added
+  * AZ-900: Add Topics and Subscriptions management
+
 # v6.2.0 - 2022-11-09
 
 Breaking

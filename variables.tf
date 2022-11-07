@@ -132,3 +132,47 @@ EOD
   }))
   default = []
 }
+
+variable "servicebus_topics" {
+  description = <<EOD
+List of objects to create topics with their options.
+```
+name          = Short topic name.
+custom_name   = Custom name for Azure resource.
+status        = The Status of the Service Bus Topic. Acceptable values are `Active` or `Disabled`.
+
+auto_delete_on_idle = Duration in minutes of the idle interval after which the Topic is automatically deleted, minimum of 5 minutes.
+default_message_ttl = Duration in minutes of TTL of messages sent to this topic if no TTL value is set on the message itself.
+duplicate_detection_history_time_window = Duration in minutes during which duplicates can be detected.
+
+enable_batched_operations = Boolean flag which controls if server-side batched operations are enabled.
+enable_express            = Boolean flag which controls whether Express Entities are enabled. An express topic holds a message in memory temporarily before writing it to persistent storage.
+enable_partitioning       = Boolean flag which controls whether to enable the topic to be partitioned across multiple message brokers.
+
+max_message_size_in_kilobytes = Integer value which controls the maximum size of a message allowed on the topic for `Premium` SKU.
+max_size_in_megabytes         = Integer value which controls the size of memory allocated for the topic.
+requires_duplicate_detection  = Boolean flag which controls whether the Topic requires duplicate detection.
+support_ordering              = Boolean flag which controls whether the Topic supports ordering.
+```
+EOD
+  type = list(object({
+    name        = string
+    custom_name = optional(string)
+
+    status = optional(string, "Active")
+
+    auto_delete_on_idle = optional(number)
+    default_message_ttl = optional(number)
+
+    duplicate_detection_history_time_window = optional(number, 10)
+
+    enable_batched_operations = optional(bool)
+    enable_express            = optional(bool)
+    enable_partitioning       = optional(bool)
+
+    max_message_size_in_kilobytes = optional(number)
+    max_size_in_megabytes         = optional(number)
+    requires_duplicate_detection  = optional(bool)
+    support_ordering              = optional(bool)
+  }))
+}
