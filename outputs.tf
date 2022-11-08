@@ -61,7 +61,7 @@ output "topics_listen_authorization_rule" {
   description = "Service Bus topics listen only authorization rules."
   value = {
     for a in local.topics_auth :
-    a.queue => azurerm_servicebus_topic_authorization_rule.listen[format("%s.%s", a.topic, a.rule)] if a.rule == "listen" && a.authorizations.listen
+    a.topic => azurerm_servicebus_topic_authorization_rule.listen[format("%s.%s", a.topic, a.rule)] if a.rule == "listen" && a.authorizations.listen
   }
 }
 
@@ -69,7 +69,7 @@ output "topics_send_authorization_rule" {
   description = "Service Bus topics send only authorization rules."
   value = {
     for a in local.topics_auth :
-    a.queue => azurerm_servicebus_topic_authorization_rule.send[format("%s.%s", a.topic, a.rule)] if a.rule == "send" && a.authorizations.send
+    a.topic => azurerm_servicebus_topic_authorization_rule.send[format("%s.%s", a.topic, a.rule)] if a.rule == "send" && a.authorizations.send
   }
 }
 
@@ -77,6 +77,6 @@ output "topics_manage_authorization_rule" {
   description = "Service Bus topics manage authorization rules."
   value = {
     for a in local.topics_auth :
-    a.queue => azurerm_servicebus_topic_authorization_rule.manage[format("%s.%s", a.topic, a.rule)] if a.rule == "manage" && a.authorizations.manage
+    a.topic => azurerm_servicebus_topic_authorization_rule.manage[format("%s.%s", a.topic, a.rule)] if a.rule == "manage" && a.authorizations.manage
   }
 }

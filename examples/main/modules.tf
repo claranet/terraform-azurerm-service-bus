@@ -69,11 +69,22 @@ module "servicebus" {
     default_message_ttl = 5 # 5min
 
     dead_lettering_on_message_expiration = true
+
+    authorizations = {
+      listen = true
+      send   = false
+    }
   }]
 
   servicebus_topics = [{
     name                = "mytopic"
     default_message_ttl = 5 # 5min
+
+    authorizations = {
+      listen = true
+      send   = true
+      manage = false
+    }
 
     subscriptions = [{
       name = "mainsub"
