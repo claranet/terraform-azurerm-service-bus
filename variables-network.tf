@@ -3,7 +3,7 @@
 variable "network_rules_enabled" {
   description = "Boolean to enable Network Rules on the Service Bus Namespace, requires `trusted_services_allowed`, `allowed_cidrs`, `subnet_ids` or `default_firewall_action` correctly set if enabled."
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "trusted_services_allowed" {
