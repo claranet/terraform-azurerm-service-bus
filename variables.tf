@@ -129,6 +129,12 @@ EOD
 
     forward_to                        = optional(string)
     forward_dead_lettered_messages_to = optional(string)
+
+    authorizations = optional(object({
+      listen = optional(bool, true)
+      send   = optional(bool, true)
+      manage = optional(bool, true)
+    }), {})
   }))
   default = []
 }
@@ -176,6 +182,12 @@ EOD
     max_size_in_megabytes         = optional(number)
     requires_duplicate_detection  = optional(bool)
     support_ordering              = optional(bool)
+
+    authorizations = optional(object({
+      listen = optional(bool, true)
+      send   = optional(bool, true)
+      manage = optional(bool, true)
+    }), {})
 
     # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/servicebus_subscription
     subscriptions = optional(list(object({

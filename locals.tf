@@ -12,4 +12,14 @@ locals {
     ]
   ])
   subscriptions = { for sub in local.topics_subs : "${sub.topic_name}.${sub.sub_name}" => sub }
+
+  queues_auth = flatten([
+    for q_name, q in local.queues : [
+      for rule in ["listen", "send", "manage"] : {
+        queue          = q_name
+        rule           = rule
+        authorizations = q.authorizations
+      }
+    ]
+  ])
 }
