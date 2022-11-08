@@ -196,12 +196,18 @@ module "servicebus" {
 | Name | Description |
 |------|-------------|
 | namespace | Service Bus Namespace outputs. |
-| namespace\_listen\_authorization\_rule | Service Bus namespace listen only authorization rule |
-| namespace\_manage\_authorization\_rule | Service Bus namespace manage only authorization rule |
-| namespace\_send\_authorization\_rule | Service Bus namespace send only authorization rule |
+| namespace\_listen\_authorization\_rule | Service Bus namespace listen only authorization rule. |
+| namespace\_manage\_authorization\_rule | Service Bus namespace manage authorization rule. |
+| namespace\_send\_authorization\_rule | Service Bus namespace send only authorization rule. |
 | queues | Service Bus queues outputs. |
+| queues\_listen\_authorization\_rule | Service Bus queues listen only authorization rules. |
+| queues\_manage\_authorization\_rule | Service Bus queues manage authorization rules. |
+| queues\_send\_authorization\_rule | Service Bus queues send only authorization rules. |
 | subscriptions | Service Bus topics subscriptions outputs. |
 | topics | Service Bus topics outputs. |
+| topics\_listen\_authorization\_rule | Service Bus topics listen only authorization rules. |
+| topics\_manage\_authorization\_rule | Service Bus topics manage authorization rules. |
+| topics\_send\_authorization\_rule | Service Bus topics send only authorization rules. |
 <!-- END_TF_DOCS -->
 ## Related documentation
 
