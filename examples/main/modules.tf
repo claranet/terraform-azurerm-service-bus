@@ -71,8 +71,25 @@ module "servicebus" {
     dead_lettering_on_message_expiration = true
   }]
 
+  servicebus_topics = [{
+    name                = "mytopic"
+    default_message_ttl = 5 # 5min
+
+    subscriptions = [{
+      name = "mainsub"
+
+      max_delivery_count        = 10
+      enable_batched_operations = true
+      lock_duration             = 1 # 1 min
+    }]
+  }]
+
   logs_destinations_ids = [
     module.logs.logs_storage_account_id,
     module.logs.log_analytics_workspace_id
   ]
+
+  extra_tags = {
+    foo = "bar"
+  }
 }
