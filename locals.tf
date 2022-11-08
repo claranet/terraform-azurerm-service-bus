@@ -22,4 +22,13 @@ locals {
       }
     ]
   ])
+  topics_auth = flatten([
+    for t_name, t in local.topics : [
+      for rule in ["listen", "send", "manage"] : {
+        topic          = t_name
+        rule           = rule
+        authorizations = t.authorizations
+      }
+    ]
+  ])
 }
