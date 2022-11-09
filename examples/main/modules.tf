@@ -27,6 +27,12 @@ module "logs" {
   resource_group_name = module.rg.resource_group_name
 }
 
+data "azurerm_subnet" "example" {
+  name                 = "backend"
+  virtual_network_name = "production"
+  resource_group_name  = module.rg.resource_group_name
+}
+
 module "servicebus" {
   source  = "claranet/service-bus/azurerm"
   version = "x.x.x"
@@ -47,6 +53,16 @@ module "servicebus" {
     listen = true
     send   = false
   }
+
+  # Network rules
+  network_rules_enabled    = true
+  trusted_services_allowed = true
+  allowed_cidrs = [
+    "1.2.3.4/32",
+  ]
+  subnet_ids = [
+    data.azurerm_subnet.example.id,
+  ]
 
   servicebus_queues = [{
     name                = "myqueue"
