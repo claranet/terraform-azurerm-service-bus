@@ -64,6 +64,7 @@ EOD
 
     public_network_access_enabled = optional(bool, true)
   })
+  default = {}
 }
 
 variable "namespace_authorizations" {
