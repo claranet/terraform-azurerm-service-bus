@@ -87,7 +87,7 @@ lock_duration = Duration of a peek-lock (in minutes); that is, the amount of tim
 
 max_message_size_in_kilobytes = Integer value which controls the maximum size of a message allowed on the queue for Premium SKU.
 max_size_in_megabytes         = Integer value which controls the size of memory allocated for the queue.
-max_delivery_count            = nteger value which controls when a message is automatically dead lettered.
+max_delivery_count            = Integer value which controls when a message is automatically dead lettered.
 requires_duplicate_detection  = Boolean flag which controls whether the Queue requires duplicate detection.
 requires_session              = Boolean flag which controls whether the Queue requires sessions. This will allow ordered handling of unbounded sequences of related messages. With sessions enabled a queue can guarantee first-in-first-out delivery of messages.
 default_message_ttl           = Duration in minutes of the TTL of messages sent to this queue.
