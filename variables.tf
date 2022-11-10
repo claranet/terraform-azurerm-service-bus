@@ -104,6 +104,8 @@ enable_express            = Boolean flag which controls whether Express Entities
 
 forward_to                        = The name of a Queue or Topic to automatically forward messages to.
 forward_dead_lettered_messages_to = The name of a Queue or Topic to automatically forward dead lettered messages to.
+
+authorizations = Object with `listen, send and manage` attributes to create queues authorizations rules.
 ```
 EOD
   type = list(object({
@@ -160,7 +162,8 @@ max_size_in_megabytes         = Integer value which controls the size of memory 
 requires_duplicate_detection  = Boolean flag which controls whether the Topic requires duplicate detection.
 support_ordering              = Boolean flag which controls whether the Topic supports ordering.
 
-subscriptions = List of subscriptions per topic
+subscriptions   = List of subscriptions per topic.
+authorizations  = Object with `listen, send and manage` attributes to create topics authorizations rules.
 ```
 EOD
   type = list(object({
