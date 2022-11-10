@@ -28,6 +28,7 @@ locals {
       for rule in ["listen", "send", "manage"] : {
         topic          = t_name
         rule           = rule
+        custom_name    = t.custom_name
         authorizations = t.authorizations
       }
     ]
