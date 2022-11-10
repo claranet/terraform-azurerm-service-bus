@@ -83,14 +83,14 @@ List of objects to create queues with their options.
 ```
 name          = Short queue name.
 custom_name   = Custom name for Azure resource.
-lock_duration = Duration of a peek-lock (in minutes); that is, the amount of time that the message is locked for other receivers. Maximum value is 5 minutes.
+lock_duration_in_minutes = Duration of a peek-lock (in minutes); that is, the amount of time that the message is locked for other receivers. Maximum value is 5 minutes.
 
 max_message_size_in_kilobytes = Integer value which controls the maximum size of a message allowed on the queue for Premium SKU.
 max_size_in_megabytes         = Integer value which controls the size of memory allocated for the queue.
 max_delivery_count            = Integer value which controls when a message is automatically dead lettered.
 requires_duplicate_detection  = Boolean flag which controls whether the Queue requires duplicate detection.
 requires_session              = Boolean flag which controls whether the Queue requires sessions. This will allow ordered handling of unbounded sequences of related messages. With sessions enabled a queue can guarantee first-in-first-out delivery of messages.
-default_message_ttl           = Duration in minutes of the TTL of messages sent to this queue.
+default_message_ttl_in_minutes           = Duration in minutes of the TTL of messages sent to this queue.
 
 status = The status of the Queue. Possible values are `Active`, `Creating`, `Deleting`, `Disabled`, `ReceiveDisabled`, `Renaming`, `SendDisabled`, `Unknown`. Note that Restoring is not accepted.
 
@@ -107,15 +107,15 @@ forward_dead_lettered_messages_to = The name of a Queue or Topic to automaticall
 ```
 EOD
   type = list(object({
-    name                          = string
-    custom_name                   = optional(string)
-    lock_duration                 = optional(number, 1)
-    max_message_size_in_kilobytes = optional(number)
-    max_size_in_megabytes         = optional(number)
-    max_delivery_count            = optional(number, 10)
-    requires_duplicate_detection  = optional(bool)
-    requires_session              = optional(bool)
-    default_message_ttl           = optional(number)
+    name                           = string
+    custom_name                    = optional(string)
+    lock_duration_in_minutes       = optional(number, 1)
+    max_message_size_in_kilobytes  = optional(number)
+    max_size_in_megabytes          = optional(number)
+    max_delivery_count             = optional(number, 10)
+    requires_duplicate_detection   = optional(bool)
+    requires_session               = optional(bool)
+    default_message_ttl_in_minutes = optional(number)
 
     status = optional(string, "Active")
 

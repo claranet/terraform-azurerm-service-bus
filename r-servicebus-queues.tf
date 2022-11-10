@@ -6,12 +6,12 @@ resource "azurerm_servicebus_queue" "queue" {
 
   status = each.value.status
 
-  lock_duration                 = try(format("PT%sM", each.value.lock_duration), null)
+  lock_duration                 = try(format("PT%sM", each.value.lock_duration_in_minutes), null)
   max_message_size_in_kilobytes = each.value.max_message_size_in_kilobytes
   max_size_in_megabytes         = each.value.max_size_in_megabytes
   requires_duplicate_detection  = each.value.requires_duplicate_detection
   requires_session              = each.value.requires_session
-  default_message_ttl           = try(format("PT%sM", each.value.default_message_ttl), null)
+  default_message_ttl           = try(format("PT%sM", each.value.default_message_ttl_in_minutes), null)
 
   dead_lettering_on_message_expiration    = each.value.dead_lettering_on_message_expiration
   duplicate_detection_history_time_window = try(format("PT%sM", each.value.duplicate_detection_history_time_window), null)
