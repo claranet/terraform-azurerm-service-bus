@@ -18,6 +18,7 @@ locals {
       for rule in ["listen", "send", "manage"] : {
         queue          = q_name
         rule           = rule
+        custom_name    = q.custom_name
         authorizations = q.authorizations
       }
     ]
