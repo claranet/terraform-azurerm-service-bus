@@ -7,7 +7,7 @@ resource "azurerm_servicebus_topic" "topic" {
   status = each.value.status
 
   auto_delete_on_idle = try(format("PT%sM", each.value.auto_delete_on_idle), null)
-  default_message_ttl = try(format("PT%sM", each.value.default_message_ttl), null)
+  default_message_ttl = try(format("PT%sM", each.value.default_message_ttl_in_minutes), null)
 
   duplicate_detection_history_time_window = try(format("PT%sM", each.value.duplicate_detection_history_time_window), null)
 

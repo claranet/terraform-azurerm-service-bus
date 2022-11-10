@@ -90,7 +90,7 @@ max_size_in_megabytes         = Integer value which controls the size of memory 
 max_delivery_count            = Integer value which controls when a message is automatically dead lettered.
 requires_duplicate_detection  = Boolean flag which controls whether the Queue requires duplicate detection.
 requires_session              = Boolean flag which controls whether the Queue requires sessions. This will allow ordered handling of unbounded sequences of related messages. With sessions enabled a queue can guarantee first-in-first-out delivery of messages.
-default_message_ttl_in_minutes           = Duration in minutes of the TTL of messages sent to this queue.
+default_message_ttl_in_minutes_in_minutes = Duration in minutes of the TTL of messages sent to this queue.
 
 status = The status of the Queue. Possible values are `Active`, `Creating`, `Deleting`, `Disabled`, `ReceiveDisabled`, `Renaming`, `SendDisabled`, `Unknown`. Note that Restoring is not accepted.
 
@@ -107,15 +107,15 @@ forward_dead_lettered_messages_to = The name of a Queue or Topic to automaticall
 ```
 EOD
   type = list(object({
-    name                           = string
-    custom_name                    = optional(string)
-    lock_duration_in_minutes       = optional(number, 1)
-    max_message_size_in_kilobytes  = optional(number)
-    max_size_in_megabytes          = optional(number)
-    max_delivery_count             = optional(number, 10)
-    requires_duplicate_detection   = optional(bool)
-    requires_session               = optional(bool)
-    default_message_ttl_in_minutes = optional(number)
+    name                                      = string
+    custom_name                               = optional(string)
+    lock_duration_in_minutes                  = optional(number, 1)
+    max_message_size_in_kilobytes             = optional(number)
+    max_size_in_megabytes                     = optional(number)
+    max_delivery_count                        = optional(number, 10)
+    requires_duplicate_detection              = optional(bool)
+    requires_session                          = optional(bool)
+    default_message_ttl_in_minutes_in_minutes = optional(number)
 
     status = optional(string, "Active")
 
@@ -142,7 +142,7 @@ custom_name   = Custom name for Azure resource.
 status        = The Status of the Service Bus Topic. Acceptable values are `Active` or `Disabled`.
 
 auto_delete_on_idle = Duration in minutes of the idle interval after which the Topic is automatically deleted, minimum of 5 minutes.
-default_message_ttl = Duration in minutes of TTL of messages sent to this topic if no TTL value is set on the message itself.
+default_message_ttl_in_minutes = Duration in minutes of TTL of messages sent to this topic if no TTL value is set on the message itself.
 duplicate_detection_history_time_window = Duration in minutes during which duplicates can be detected.
 
 enable_batched_operations = Boolean flag which controls if server-side batched operations are enabled.
@@ -163,8 +163,8 @@ EOD
 
     status = optional(string, "Active")
 
-    auto_delete_on_idle = optional(number)
-    default_message_ttl = optional(number)
+    auto_delete_on_idle            = optional(number)
+    default_message_ttl_in_minutes = optional(number)
 
     duplicate_detection_history_time_window = optional(number, 10)
 
@@ -186,11 +186,11 @@ EOD
 
       status = optional(string, "Active")
 
-      auto_delete_on_idle       = optional(number)
-      enable_batched_operations = optional(bool, true)
-      requires_session          = optional(bool)
-      default_message_ttl       = optional(number)
-      lock_duration             = optional(number, 1)
+      auto_delete_on_idle            = optional(number)
+      enable_batched_operations      = optional(bool, true)
+      requires_session               = optional(bool)
+      default_message_ttl_in_minutes = optional(number)
+      lock_duration                  = optional(number, 1)
 
       dead_lettering_on_message_expiration      = optional(bool)
       dead_lettering_on_filter_evaluation_error = optional(bool)
