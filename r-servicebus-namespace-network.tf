@@ -1,5 +1,5 @@
 resource "azurerm_servicebus_namespace_network_rule_set" "network_rules" {
-  count = var.network_rules_enabled && var.namespace_parameters.sku == "Premium" ? 1 : 0
+  count = var.network_rules_enabled ? 1 : 0
 
   namespace_id = azurerm_servicebus_namespace.servicebus_namespace.id
 
@@ -17,4 +17,11 @@ resource "azurerm_servicebus_namespace_network_rule_set" "network_rules" {
   }
 
   ip_rules = var.allowed_cidrs
+
+  lifecycle {
+    precondition {
+      condition     = !var.network_rules_enabled || (var.network_rules_enabled && var.namespace_parameters.sku == "Premium")
+      error_message = "`var.namespace_parameters.sku` must be `Premium` to enable network rules."
+    }
+  }
 }
