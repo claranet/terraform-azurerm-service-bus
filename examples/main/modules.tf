@@ -69,10 +69,38 @@ module "servicebus" {
     default_message_ttl = 5 # 5min
 
     dead_lettering_on_message_expiration = true
+
+    authorizations = {
+      listen = true
+      send   = false
+    }
+  }]
+
+  servicebus_topics = [{
+    name                = "mytopic"
+    default_message_ttl = 5 # 5min
+
+    authorizations = {
+      listen = true
+      send   = true
+      manage = false
+    }
+
+    subscriptions = [{
+      name = "mainsub"
+
+      max_delivery_count        = 10
+      enable_batched_operations = true
+      lock_duration             = 1 # 1 min
+    }]
   }]
 
   logs_destinations_ids = [
     module.logs.logs_storage_account_id,
     module.logs.log_analytics_workspace_id
   ]
+
+  extra_tags = {
+    foo = "bar"
+  }
 }

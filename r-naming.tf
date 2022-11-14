@@ -9,7 +9,7 @@ resource "azurecaf_name" "servicebus_namespace" {
 }
 
 resource "azurecaf_name" "servicebus_queue" {
-  for_each = { for q in var.servicebus_queues : q.name => q }
+  for_each = local.queues
 
   name          = var.stack
   resource_type = "azurerm_servicebus_queue"
@@ -27,6 +27,54 @@ resource "azurecaf_name" "servicebus_namespace_auth_rule" {
   resource_type = "azurerm_servicebus_namespace_authorization_rule"
   prefixes      = var.name_prefix == "" ? null : [local.name_prefix]
   suffixes      = compact([var.client_name, var.location_short, var.environment, each.key, local.name_suffix])
+  use_slug      = var.use_caf_naming
+  clean_input   = true
+  separator     = "-"
+}
+
+resource "azurecaf_name" "servicebus_topic" {
+  for_each = local.topics
+
+  name          = var.stack
+  resource_type = "azurerm_servicebus_topic"
+  prefixes      = var.name_prefix == "" ? null : [local.name_prefix]
+  suffixes      = compact([var.client_name, var.location_short, var.environment, each.key, local.name_suffix])
+  use_slug      = var.use_caf_naming
+  clean_input   = true
+  separator     = "-"
+}
+
+resource "azurecaf_name" "servicebus_topic_sub" {
+  for_each = local.subscriptions
+
+  name          = var.stack
+  resource_type = "azurerm_servicebus_subscription"
+  prefixes      = var.name_prefix == "" ? null : [local.name_prefix]
+  suffixes      = compact([var.client_name, var.location_short, var.environment, each.value.sub_name, local.name_suffix])
+  use_slug      = var.use_caf_naming
+  clean_input   = true
+  separator     = "-"
+}
+
+resource "azurecaf_name" "servicebus_queue_auth_rule" {
+  for_each = { for a in local.queues_auth : format("%s.%s", a.queue, a.rule) => format("%s-%s", a.queue, a.rule) }
+
+  name          = var.stack
+  resource_type = "azurerm_servicebus_queue_authorization_rule"
+  prefixes      = var.name_prefix == "" ? null : [local.name_prefix]
+  suffixes      = compact([var.client_name, var.location_short, var.environment, each.value, local.name_suffix])
+  use_slug      = var.use_caf_naming
+  clean_input   = true
+  separator     = "-"
+}
+
+resource "azurecaf_name" "servicebus_topic_auth_rule" {
+  for_each = { for a in local.topics_auth : format("%s.%s", a.topic, a.rule) => format("%s-%s", a.topic, a.rule) }
+
+  name          = var.stack
+  resource_type = "azurerm_servicebus_topic_authorization_rule"
+  prefixes      = var.name_prefix == "" ? null : [local.name_prefix]
+  suffixes      = compact([var.client_name, var.location_short, var.environment, each.value, local.name_suffix])
   use_slug      = var.use_caf_naming
   clean_input   = true
   separator     = "-"
