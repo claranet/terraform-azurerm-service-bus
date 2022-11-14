@@ -6,6 +6,7 @@ Breaking
 
 Added
   * AZ-900: Add Topics and Subscriptions management
+  * AZ-900: Add authentication rules for both queues and topics entities
 
 # v6.2.0 - 2022-11-09
 
