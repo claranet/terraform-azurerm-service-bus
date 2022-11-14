@@ -1,3 +1,9 @@
+# Unreleased
+
+Breaking
+  * AZ-840: Require Terraform 1.3+
+  * AZ-900: Rework module code, minimum AzureRM version to `v3.28`
+
 # v6.2.0 - 2022-11-09
 
 Breaking

@@ -1,10 +1,8 @@
 module "diagnostics" {
   source  = "claranet/diagnostic-settings/azurerm"
-  version = "5.0.0"
+  version = "6.1.0"
 
-  for_each = var.servicebus_namespaces_queues
-
-  resource_id = azurerm_servicebus_namespace.servicebus_namespace[each.key].id
+  resource_id = azurerm_servicebus_namespace.servicebus_namespace.id
 
   logs_destinations_ids = var.logs_destinations_ids
   log_categories        = var.logs_categories

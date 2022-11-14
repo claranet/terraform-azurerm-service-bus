@@ -1,43 +1,24 @@
-output "namespaces" {
-  description = "Service Bus namespaces map"
-  value = {
-    for namespace, config in var.servicebus_namespaces_queues :
-    namespace => azurerm_servicebus_namespace.servicebus_namespace[namespace]
-  }
+output "namespace" {
+  description = "Service Bus Namespace outputs."
+  value       = azurerm_servicebus_namespace.servicebus_namespace
+}
+
+output "namespace_listen_authorization_rule" {
+  description = "Service Bus namespace listen only authorization rule"
+  value       = try(azurerm_servicebus_namespace_authorization_rule.listen["enabled"], null)
+}
+
+output "namespace_send_authorization_rule" {
+  description = "Service Bus namespace send only authorization rule"
+  value       = try(azurerm_servicebus_namespace_authorization_rule.send["enabled"], null)
+}
+
+output "namespace_manage_authorization_rule" {
+  description = "Service Bus namespace manage only authorization rule"
+  value       = try(azurerm_servicebus_namespace_authorization_rule.manage["enabled"], null)
 }
 
 output "queues" {
-  description = "Service Bus queues map"
-  value = {
-    for namespace, config in var.servicebus_namespaces_queues :
-    namespace => { for queue in local.queues_list :
-    azurerm_servicebus_queue.queue[queue].name => azurerm_servicebus_queue.queue[queue] if split("|", queue)[0] == namespace }
-  }
-}
-
-output "senders" {
-  description = "Service Bus \"sender\" authorization rules map"
-  value = {
-    for namespace, config in var.servicebus_namespaces_queues :
-    namespace => { for queue in local.queues_sender :
-    azurerm_servicebus_queue_authorization_rule.sender[queue].name => azurerm_servicebus_queue_authorization_rule.sender[queue] if split("|", queue)[0] == namespace }
-  }
-}
-
-output "readers" {
-  description = "Service Bus \"readers\" authorization rules map"
-  value = {
-    for namespace, config in var.servicebus_namespaces_queues :
-    namespace => { for queue in local.queues_reader :
-    azurerm_servicebus_queue_authorization_rule.reader[queue].name => azurerm_servicebus_queue_authorization_rule.reader[queue] if split("|", queue)[0] == namespace }
-  }
-}
-
-output "manages" {
-  description = "Service Bus \"managers\" authorization rules map"
-  value = {
-    for namespace, config in var.servicebus_namespaces_queues :
-    namespace => { for queue in local.queues_manage :
-    azurerm_servicebus_queue_authorization_rule.manage[queue].name => azurerm_servicebus_queue_authorization_rule.manage[queue] if split("|", queue)[0] == namespace }
-  }
+  description = "Service Bus queues outputs."
+  value       = { for q in var.servicebus_queues : q.name => azurerm_servicebus_queue.queue[q.name] }
 }
