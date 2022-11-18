@@ -1,4 +1,4 @@
-resource "azurecaf_name" "servicebus_namespace" {
+data "azurecaf_name" "servicebus_namespace" {
   name          = var.stack
   resource_type = "azurerm_servicebus_namespace"
   prefixes      = var.name_prefix == "" ? null : [local.name_prefix]
@@ -8,7 +8,7 @@ resource "azurecaf_name" "servicebus_namespace" {
   separator     = "-"
 }
 
-resource "azurecaf_name" "servicebus_queue" {
+data "azurecaf_name" "servicebus_queue" {
   for_each = local.queues
 
   name          = var.stack
@@ -20,7 +20,7 @@ resource "azurecaf_name" "servicebus_queue" {
   separator     = "-"
 }
 
-resource "azurecaf_name" "servicebus_namespace_auth_rule" {
+data "azurecaf_name" "servicebus_namespace_auth_rule" {
   for_each = toset(["listen", "send", "manage"])
 
   name          = var.stack
@@ -32,7 +32,7 @@ resource "azurecaf_name" "servicebus_namespace_auth_rule" {
   separator     = "-"
 }
 
-resource "azurecaf_name" "servicebus_topic" {
+data "azurecaf_name" "servicebus_topic" {
   for_each = local.topics
 
   name          = var.stack
@@ -44,7 +44,7 @@ resource "azurecaf_name" "servicebus_topic" {
   separator     = "-"
 }
 
-resource "azurecaf_name" "servicebus_topic_sub" {
+data "azurecaf_name" "servicebus_topic_sub" {
   for_each = local.subscriptions
 
   name          = var.stack
@@ -56,7 +56,7 @@ resource "azurecaf_name" "servicebus_topic_sub" {
   separator     = "-"
 }
 
-resource "azurecaf_name" "servicebus_queue_auth_rule" {
+data "azurecaf_name" "servicebus_queue_auth_rule" {
   for_each = { for a in local.queues_auth : format("%s.%s", a.queue, a.rule) => format("%s-%s", a.queue, a.rule) }
 
   name          = var.stack
@@ -68,7 +68,7 @@ resource "azurecaf_name" "servicebus_queue_auth_rule" {
   separator     = "-"
 }
 
-resource "azurecaf_name" "servicebus_topic_auth_rule" {
+data "azurecaf_name" "servicebus_topic_auth_rule" {
   for_each = { for a in local.topics_auth : format("%s.%s", a.topic, a.rule) => format("%s-%s", a.topic, a.rule) }
 
   name          = var.stack

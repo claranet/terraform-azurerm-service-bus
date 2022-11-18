@@ -1,7 +1,7 @@
 resource "azurerm_servicebus_subscription" "topic_sub" {
   for_each = local.subscriptions
 
-  name     = coalesce(each.value.sub_conf.custom_name, azurecaf_name.servicebus_topic_sub[each.key].result)
+  name     = coalesce(each.value.sub_conf.custom_name, data.azurecaf_name.servicebus_topic_sub[each.key].result)
   topic_id = azurerm_servicebus_topic.topic[each.value.topic_name].id
 
   max_delivery_count = each.value.sub_conf.max_delivery_count

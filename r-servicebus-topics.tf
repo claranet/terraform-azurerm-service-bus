@@ -1,7 +1,7 @@
 resource "azurerm_servicebus_topic" "topic" {
   for_each = local.topics
 
-  name         = coalesce(each.value.custom_name, azurecaf_name.servicebus_topic[each.key].result)
+  name         = coalesce(each.value.custom_name, data.azurecaf_name.servicebus_topic[each.key].result)
   namespace_id = azurerm_servicebus_namespace.servicebus_namespace.id
 
   status = each.value.status
