@@ -105,7 +105,8 @@ enable_express            = Boolean flag which controls whether Express Entities
 forward_to                        = The name of a Queue or Topic to automatically forward messages to.
 forward_dead_lettered_messages_to = The name of a Queue or Topic to automatically forward dead lettered messages to.
 
-authorizations = Object with `listen, send and manage` attributes to create queues authorizations rules.
+authorizations_custom_name = To override default Queue Authorization Rules names, generated if not set (first with the custom name of the Queue if set, otherwise with Azure CAF).      
+authorizations             = Object with `listen, send and manage` attributes to create queues authorizations rules.
 ```
 EOD
   type = list(object({
@@ -132,6 +133,7 @@ EOD
     forward_to                        = optional(string)
     forward_dead_lettered_messages_to = optional(string)
 
+    authorizations_custom_name = optional(string)
     authorizations = optional(object({
       listen = optional(bool, true)
       send   = optional(bool, true)
@@ -162,8 +164,10 @@ max_size_in_megabytes         = Integer value which controls the size of memory 
 requires_duplicate_detection  = Boolean flag which controls whether the Topic requires duplicate detection.
 support_ordering              = Boolean flag which controls whether the Topic supports ordering.
 
-subscriptions   = List of subscriptions per topic.
-authorizations  = Object with `listen, send and manage` attributes to create topics authorizations rules.
+subscriptions = List of subscriptions per topic.
+
+authorizations_custom_name = To override default Topic Authorization Rules names, generated if not set (first with the custom name of the Topic if set, otherwise with Azure CAF).  
+authorizations             = Object with `listen, send and manage` attributes to create topics authorizations rules.
 ```
 EOD
   type = list(object({
@@ -186,6 +190,7 @@ EOD
     requires_duplicate_detection  = optional(bool)
     support_ordering              = optional(bool)
 
+    authorizations_custom_name = optional(string)
     authorizations = optional(object({
       listen = optional(bool, true)
       send   = optional(bool, true)

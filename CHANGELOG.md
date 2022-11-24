@@ -1,5 +1,8 @@
 # Unreleased
 
+Added
+  * AZ-916: Add Authorization Rules naming option for Queues and Topics
+
 Changed
   * AZ-908: Use the new data source for CAF naming (instead of resource)
 
