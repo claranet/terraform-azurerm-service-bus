@@ -1,4 +1,4 @@
-# Unreleased
+# v7.1.0 - 2022-11-25
 
 Added
   * AZ-916: Add Authorization Rules naming option for Queues and Topics
