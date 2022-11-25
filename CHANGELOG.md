@@ -1,7 +1,13 @@
 # Unreleased
 
+Added
+  * AZ-916: Add Authorization Rules naming option for Queues and Topics
+
 Changed
   * AZ-908: Use the new data source for CAF naming (instead of resource)
+
+Fixed
+  * AZ-916: Fix Queue `default_message_ttl_in_minutes` parameter and revamp some variables
 
 # v7.0.0 - 2022-11-14
 
