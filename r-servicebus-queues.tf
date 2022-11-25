@@ -1,7 +1,7 @@
 resource "azurerm_servicebus_queue" "queue" {
   for_each = local.queues
 
-  name         = coalesce(each.value.custom_name, azurecaf_name.servicebus_queue[each.key].result)
+  name         = coalesce(each.value.custom_name, data.azurecaf_name.servicebus_queue[each.key].result)
   namespace_id = azurerm_servicebus_namespace.servicebus_namespace.id
 
   status = each.value.status

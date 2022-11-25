@@ -16,20 +16,22 @@ locals {
   queues_auth = flatten([
     for q_name, q in local.queues : [
       for rule in ["listen", "send", "manage"] : {
-        queue          = q_name
-        rule           = rule
-        custom_name    = q.custom_name
-        authorizations = q.authorizations
+        queue                      = q_name
+        rule                       = rule
+        custom_name                = q.custom_name
+        authorizations_custom_name = q.authorizations_custom_name
+        authorizations             = q.authorizations
       }
     ]
   ])
   topics_auth = flatten([
     for t_name, t in local.topics : [
       for rule in ["listen", "send", "manage"] : {
-        topic          = t_name
-        rule           = rule
-        custom_name    = t.custom_name
-        authorizations = t.authorizations
+        topic                      = t_name
+        rule                       = rule
+        custom_name                = t.custom_name
+        authorizations_custom_name = t.authorizations_custom_name
+        authorizations             = t.authorizations
       }
     ]
   ])
