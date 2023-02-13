@@ -1,4 +1,4 @@
-# Unreleased
+# v7.1.1 - 2023-02-13
 
 Fixed
  * [GH-5](https://github.com/claranet/terraform-azurerm-service-bus/pull/5): Fix sensitive outputs
