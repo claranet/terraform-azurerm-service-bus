@@ -7,16 +7,19 @@ output "namespace" {
 output "namespace_listen_authorization_rule" {
   description = "Service Bus namespace listen only authorization rule."
   value       = try(azurerm_servicebus_namespace_authorization_rule.listen["enabled"], null)
+  sensitive = true
 }
 
 output "namespace_send_authorization_rule" {
   description = "Service Bus namespace send only authorization rule."
   value       = try(azurerm_servicebus_namespace_authorization_rule.send["enabled"], null)
+  sensitive = true
 }
 
 output "namespace_manage_authorization_rule" {
   description = "Service Bus namespace manage authorization rule."
   value       = try(azurerm_servicebus_namespace_authorization_rule.manage["enabled"], null)
+  sensitive = true
 }
 
 output "queues" {
@@ -49,6 +52,7 @@ output "queues_send_authorization_rule" {
     for a in local.queues_auth :
     a.queue => azurerm_servicebus_queue_authorization_rule.send[format("%s.%s", a.queue, a.rule)] if a.rule == "send" && a.authorizations.send
   }
+  sensitive = true
 }
 
 output "queues_manage_authorization_rule" {
@@ -84,4 +88,5 @@ output "topics_manage_authorization_rule" {
     for a in local.topics_auth :
     a.topic => azurerm_servicebus_topic_authorization_rule.manage[format("%s.%s", a.topic, a.rule)] if a.rule == "manage" && a.authorizations.manage
   }
+  sensitive = true
 }
