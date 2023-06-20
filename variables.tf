@@ -105,7 +105,7 @@ requires_session                     = Boolean flag which controls whether the Q
 forward_to                        = The name of a Queue or Topic to automatically forward messages to.
 forward_dead_lettered_messages_to = The name of a Queue or Topic to automatically forward dead lettered messages to.
 
-authorizations_custom_name = To override default Queue Authorization Rules names, generated if not set (first with the custom name of the Queue if set, otherwise with Azure CAF).      
+authorizations_custom_name = To override default Queue Authorization Rules names, generated if not set (first with the custom name of the Queue if set, otherwise with Azure CAF).
 authorizations             = Object with `listen`, `send` and `manage` attributes to create Queues Authorizations Rules.
 ```
 EOD
@@ -115,7 +115,7 @@ EOD
 
     status = optional(string, "Active")
 
-    auto_delete_on_idle                     = optional(number)
+    auto_delete_on_idle                     = optional(string)
     default_message_ttl_in_minutes          = optional(number)
     duplicate_detection_history_time_window = optional(number, 10)
     lock_duration_in_minutes                = optional(number, 1)
@@ -164,7 +164,7 @@ enable_express               = Boolean flag which controls whether Express Entit
 requires_duplicate_detection = Boolean flag which controls whether the Topic requires duplicate detection.
 support_ordering             = Boolean flag which controls whether the Topic supports ordering.
 
-authorizations_custom_name = To override default Topic Authorization Rules names, generated if not set (first with the custom name of the Topic if set, otherwise with Azure CAF).  
+authorizations_custom_name = To override default Topic Authorization Rules names, generated if not set (first with the custom name of the Topic if set, otherwise with Azure CAF).
 authorizations             = Object with `listen`, `send` and `manage` attributes to create Topics Authorizations Rules.
 
 subscriptions = List of subscriptions per Topic.
@@ -176,7 +176,7 @@ EOD
 
     status = optional(string, "Active")
 
-    auto_delete_on_idle                     = optional(number)
+    auto_delete_on_idle                     = optional(string)
     default_message_ttl_in_minutes          = optional(number)
     duplicate_detection_history_time_window = optional(number, 10)
     max_message_size_in_kilobytes           = optional(number)
@@ -202,7 +202,7 @@ EOD
 
       status = optional(string, "Active")
 
-      auto_delete_on_idle            = optional(number)
+      auto_delete_on_idle            = optional(string)
       default_message_ttl_in_minutes = optional(number)
       lock_duration                  = optional(number, 1)
       max_delivery_count             = number
