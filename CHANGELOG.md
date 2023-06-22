@@ -3,6 +3,9 @@
 Fixed
   * AZ-1107: Fix variable type for `auto_delete_on_idle`
 
+Changed
+  * AZ-1107: Add possibility to write with ISO8601 format like `P1D` for several variables
+
 # v7.1.1 - 2023-02-13
 
 Fixed

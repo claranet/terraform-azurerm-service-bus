@@ -10,8 +10,8 @@ resource "azurerm_servicebus_subscription" "topic_sub" {
   auto_delete_on_idle       = each.value.sub_conf.auto_delete_on_idle
   enable_batched_operations = each.value.sub_conf.enable_batched_operations
   requires_session          = each.value.sub_conf.requires_session
-  default_message_ttl       = try(format("PT%sM", each.value.sub_conf.default_message_ttl_in_minutes), null)
-  lock_duration             = try(format("PT%sM", each.value.sub_conf.lock_duration), null)
+  default_message_ttl       = try(format("PT%sM", tonumber(each.value.default_message_ttl)), each.value.default_message_ttl)
+  lock_duration             = try(format("PT%sM", tonumber(each.value.lock_duration)), each.value.lock_duration)
 
   dead_lettering_on_message_expiration      = each.value.sub_conf.dead_lettering_on_message_expiration
   dead_lettering_on_filter_evaluation_error = each.value.sub_conf.dead_lettering_on_filter_evaluation_error

@@ -66,7 +66,7 @@ module "servicebus" {
 
   servicebus_queues = [{
     name                = "myqueue"
-    default_message_ttl = 5 # 5min
+    default_message_ttl = "P1D" # 1 day
 
     dead_lettering_on_message_expiration = true
 
