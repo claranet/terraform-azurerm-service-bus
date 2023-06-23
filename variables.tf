@@ -88,7 +88,7 @@ custom_name = Custom name for Azure resource.
 status = The status of the Queue. Possible values are `Active`, `Creating`, `Deleting`, `Disabled`, `ReceiveDisabled`, `Renaming`, `SendDisabled`, `Unknown`. Note that `Restoring` is not accepted.
 
 auto_delete_on_idle                     = Duration of the idle interval after which the Queue is automatically deleted.
-default_message_ttl_                    = Duration of the TTL of messages sent to this Queue.
+default_message_ttl                     = Duration of the TTL of messages sent to this Queue.
 duplicate_detection_history_time_window = Duration during which duplicates can be detected.
 lock_duration                           = Duration of a peek-lock that is, the amount of time that the message is locked for other receivers. Maximum value is 5 minutes.
 max_message_size_in_kilobytes           = Integer value which controls the maximum size of a message allowed on the Queue for Premium SKU.
