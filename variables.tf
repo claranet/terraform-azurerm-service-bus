@@ -87,10 +87,10 @@ custom_name = Custom name for Azure resource.
 
 status = The status of the Queue. Possible values are `Active`, `Creating`, `Deleting`, `Disabled`, `ReceiveDisabled`, `Renaming`, `SendDisabled`, `Unknown`. Note that `Restoring` is not accepted.
 
-auto_delete_on_idle                     = Duration in minutes of the idle interval after which the Queue is automatically deleted.
-default_message_ttl_in_minutes          = Duration in minutes of the TTL of messages sent to this Queue.
-duplicate_detection_history_time_window = Duration in minutes during which duplicates can be detected.
-lock_duration_in_minutes                = Duration of a peek-lock (in minutes); that is, the amount of time that the message is locked for other receivers. Maximum value is 5 minutes.
+auto_delete_on_idle                     = Duration of the idle interval after which the Queue is automatically deleted.
+default_message_ttl                     = Duration of the TTL of messages sent to this Queue.
+duplicate_detection_history_time_window = Duration during which duplicates can be detected.
+lock_duration                           = Duration of a peek-lock that is, the amount of time that the message is locked for other receivers. Maximum value is 5 minutes.
 max_message_size_in_kilobytes           = Integer value which controls the maximum size of a message allowed on the Queue for Premium SKU.
 max_size_in_megabytes                   = Integer value which controls the size of memory allocated for the Queue.
 max_delivery_count                      = Integer value which controls when a message is automatically dead lettered.
@@ -116,9 +116,9 @@ EOD
     status = optional(string, "Active")
 
     auto_delete_on_idle                     = optional(string)
-    default_message_ttl_in_minutes          = optional(number)
-    duplicate_detection_history_time_window = optional(number, 10)
-    lock_duration_in_minutes                = optional(number, 1)
+    default_message_ttl                     = optional(string)
+    duplicate_detection_history_time_window = optional(string)
+    lock_duration                           = optional(string)
     max_message_size_in_kilobytes           = optional(number)
     max_size_in_megabytes                   = optional(number)
     max_delivery_count                      = optional(number, 10)
@@ -152,9 +152,9 @@ custom_name = Custom name for Azure resource.
 
 status = The status of the Service Bus Topic. Acceptable values are `Active` or `Disabled`.
 
-auto_delete_on_idle                     = Duration in minutes of the idle interval after which the Topic is automatically deleted, minimum of 5 minutes.
-default_message_ttl_in_minutes          = Duration in minutes of TTL of messages sent to this Topic if no TTL value is set on the message itself.
-duplicate_detection_history_time_window = Duration in minutes during which duplicates can be detected.
+auto_delete_on_idle                     = Duration of the idle interval after which the Topic is automatically deleted, minimum of 5 minutes.
+default_message_ttl                     = Duration of TTL of messages sent to this Topic if no TTL value is set on the message itself.
+duplicate_detection_history_time_window = Duration during which duplicates can be detected.
 max_message_size_in_kilobytes           = Integer value which controls the maximum size of a message allowed on the Topic for `Premium` SKU.
 max_size_in_megabytes                   = Integer value which controls the size of memory allocated for the Topic.
 
@@ -177,8 +177,8 @@ EOD
     status = optional(string, "Active")
 
     auto_delete_on_idle                     = optional(string)
-    default_message_ttl_in_minutes          = optional(number)
-    duplicate_detection_history_time_window = optional(number, 10)
+    default_message_ttl                     = optional(string)
+    duplicate_detection_history_time_window = optional(string)
     max_message_size_in_kilobytes           = optional(number)
     max_size_in_megabytes                   = optional(number)
 
@@ -202,10 +202,10 @@ EOD
 
       status = optional(string, "Active")
 
-      auto_delete_on_idle            = optional(string)
-      default_message_ttl_in_minutes = optional(number)
-      lock_duration                  = optional(number, 1)
-      max_delivery_count             = number
+      auto_delete_on_idle = optional(string)
+      default_message_ttl = optional(string)
+      lock_duration       = optional(string)
+      max_delivery_count  = number
 
       enable_batched_operations                 = optional(bool, true)
       dead_lettering_on_message_expiration      = optional(bool)

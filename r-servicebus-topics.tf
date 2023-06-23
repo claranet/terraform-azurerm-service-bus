@@ -6,10 +6,10 @@ resource "azurerm_servicebus_topic" "topic" {
 
   status = each.value.status
 
-  auto_delete_on_idle = try(format("PT%sM", each.value.auto_delete_on_idle), null)
-  default_message_ttl = try(format("PT%sM", each.value.default_message_ttl_in_minutes), null)
+  auto_delete_on_idle = try(format("PT%sM", tonumber(each.value.auto_delete_on_idle)), each.value.auto_delete_on_idle)
+  default_message_ttl = try(format("PT%sM", tonumber(each.value.default_message_ttl)), each.value.default_message_ttl)
 
-  duplicate_detection_history_time_window = try(format("PT%sM", each.value.duplicate_detection_history_time_window), null)
+  duplicate_detection_history_time_window = try(format("PT%sM", tonumber(each.value.duplicate_detection_history_time_window)), each.value.duplicate_detection_history_time_window)
 
   enable_batched_operations = each.value.enable_batched_operations
   enable_express            = each.value.enable_express
