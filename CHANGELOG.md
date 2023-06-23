@@ -1,4 +1,4 @@
-# Unreleased
+# v7.2.0 - 2023-06-23
 
 Fixed
   * AZ-1107: Fix variable type for `auto_delete_on_idle`
