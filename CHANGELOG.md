@@ -1,3 +1,8 @@
+# Unreleased
+
+Fixed
+  * AZ-1107: Fix regression on topics subscriptions
+
 # v7.2.0 - 2023-06-23
 
 Fixed
