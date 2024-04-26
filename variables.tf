@@ -48,6 +48,7 @@ Object to handle Service Bus Namespace options.
 custom_name         = To override default resource name, generated if not set.
 sku                 = Defines which tier to use. Options are `Basic`, `Standard` or `Premium`.
 capacity            = Specifies the capacity. When SKU is `Premium`, capacity can be 1, 2, 4, 8 or 16.
+premium_messaging_partitions            = Specifies the number messaging partitions. Only valid when sku is Premium and the minimum number is 1. Possible values include 0, 1, 2, and 4. Changing this forces a new resource to be created.
 local_auth_enabled  = Whether or not SAS authentication is enabled for the Service Bus Namespace.
 zone_redundant      = Whether or not this resource is zone redundant. SKU needs to be `Premium`.
 minimum_tls_version = The minimum supported TLS version for this Service Bus Namespace.
@@ -56,12 +57,13 @@ public_network_access_enabled = Is public network access enabled for the Service
 ```
 EOD
   type = object({
-    custom_name         = optional(string)
-    sku                 = optional(string, "Standard")
-    capacity            = optional(number, 0)
-    local_auth_enabled  = optional(bool, true)
-    zone_redundant      = optional(bool, false)
-    minimum_tls_version = optional(string, "1.2")
+    custom_name                  = optional(string)
+    sku                          = optional(string, "Standard")
+    capacity                     = optional(number, 0)
+    premium_messaging_partitions = optional(number, 0)
+    local_auth_enabled           = optional(bool, true)
+    zone_redundant               = optional(bool, false)
+    minimum_tls_version          = optional(string, "1.2")
 
     public_network_access_enabled = optional(bool, true)
   })

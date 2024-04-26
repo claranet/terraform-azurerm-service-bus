@@ -3,11 +3,12 @@ resource "azurerm_servicebus_namespace" "servicebus_namespace" {
   location            = var.location
   resource_group_name = var.resource_group_name
 
-  sku                 = var.namespace_parameters.sku
-  capacity            = var.namespace_parameters.sku != "Premium" ? 0 : var.namespace_parameters.capacity
-  local_auth_enabled  = var.namespace_parameters.local_auth_enabled
-  zone_redundant      = var.namespace_parameters.sku != "Premium" ? false : var.namespace_parameters.zone_redundant
-  minimum_tls_version = var.namespace_parameters.minimum_tls_version
+  sku                          = var.namespace_parameters.sku
+  capacity                     = var.namespace_parameters.sku != "Premium" ? 0 : var.namespace_parameters.capacity
+  premium_messaging_partitions = var.namespace_parameters.sku != "Premium" ? 0 : var.namespace_parameters.premium_messaging_partitions
+  local_auth_enabled           = var.namespace_parameters.local_auth_enabled
+  zone_redundant               = var.namespace_parameters.sku != "Premium" ? false : var.namespace_parameters.zone_redundant
+  minimum_tls_version          = var.namespace_parameters.minimum_tls_version
 
   public_network_access_enabled = var.namespace_parameters.public_network_access_enabled
 
