@@ -1,3 +1,26 @@
+## 7.4.0 (2024-04-26)
+
+
+### Features
+
+* **AZ-1401:** add parameter premium_messaging_partitions for azurerm_servicebus_namespace 4b8757e
+
+
+### Continuous Integration
+
+* **AZ-1391:** enable semantic-release [skip ci] 627eff7
+* **AZ-1391:** update semantic-release config [skip ci] 7f61d28
+
+
+### Miscellaneous Chores
+
+* **deps:** add renovate.json 43083bb
+* **deps:** enable automerge on renovate c498cac
+* **deps:** update dependency trivy to v0.50.2 7bf6c83
+* **deps:** update dependency trivy to v0.50.4 9a720ad
+* **deps:** update renovate.json e2583b6
+* **pre-commit:** update commitlint hook 117587a
+
 # v7.3.0 - 2023-09-08
 
 Breaking
