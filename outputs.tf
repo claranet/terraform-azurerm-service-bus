@@ -1,7 +1,12 @@
-output "namespace" {
+output "resource" {
   description = "Service Bus Namespace outputs."
-  value       = azurerm_servicebus_namespace.servicebus_namespace
+  value       = azurerm_servicebus_namespace.main
   sensitive   = true
+}
+
+output "module_diagnostics" {
+  description = "Diagnostics settings module outputs."
+  value       = module.diagnostics
 }
 
 output "namespace_listen_authorization_rule" {
@@ -21,17 +26,17 @@ output "namespace_manage_authorization_rule" {
 
 output "queues" {
   description = "Service Bus queues outputs."
-  value       = { for q_name in keys(local.queues) : q_name => azurerm_servicebus_queue.queue[q_name] }
+  value       = { for q_name in keys(local.queues) : q_name => azurerm_servicebus_queue.main[q_name] }
 }
 
 output "topics" {
   description = "Service Bus topics outputs."
-  value       = { for t_name in keys(local.topics) : t_name => azurerm_servicebus_topic.topic[t_name] }
+  value       = { for t_name in keys(local.topics) : t_name => azurerm_servicebus_topic.main[t_name] }
 }
 
 output "subscriptions" {
   description = "Service Bus topics subscriptions outputs."
-  value       = { for s_name in keys(local.subscriptions) : s_name => azurerm_servicebus_subscription.topic_sub[s_name] }
+  value       = { for s_name in keys(local.subscriptions) : s_name => azurerm_servicebus_subscription.main[s_name] }
 }
 
 output "queues_listen_authorization_rule" {
