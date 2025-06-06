@@ -171,6 +171,26 @@ EOD
 
       forward_to                        = optional(string)
       forward_dead_lettered_messages_to = optional(string)
+
+      # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/servicebus_subscription_rule
+      rules = optional(list(object({
+        name        = string
+        custom_name = optional(string)
+
+        filter_type = optional(string, "SqlFilter")
+        sql_filter  = optional(string)
+        correlation_filter = optional(object({
+          correlation_id      = optional(string)
+          content_type        = optional(string)
+          label               = optional(string)
+          reply_to            = optional(string)
+          reply_to_session_id = optional(string)
+          session_id          = optional(string)
+          to                  = optional(string)
+          properties          = optional(map(string))
+        }))
+        action_type = optional(string)
+      })), [])
     })), [])
   }))
   default = []
