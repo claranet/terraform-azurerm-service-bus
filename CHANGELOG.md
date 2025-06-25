@@ -1,3 +1,37 @@
+## 8.1.0 (2025-06-25)
+
+### Features
+
+* **GH-7:** ✨ add support for subscription rules 77951c4
+
+### Code Refactoring
+
+* **GH-7:** ♻️ move variables for Service Bus Namespace and Queue configurations dd534d8
+
+### Miscellaneous Chores
+
+* **⚙️:** ✏️ update template identifier for MR review bd9bed4
+* apply 2 suggestion(s) to 1 file(s) d5cbb65
+* **deps:** update dependency opentofu to v1.10.0 a2173ae
+* **deps:** update dependency opentofu to v1.9.1 58f0970
+* **deps:** update dependency pre-commit to v4.2.0 233be29
+* **deps:** update dependency terraform-docs to v0.20.0 1593a2f
+* **deps:** update dependency tflint to v0.57.0 5de59c1
+* **deps:** update dependency tflint to v0.58.0 7b4a04e
+* **deps:** update dependency trivy to v0.59.1 5977e0d
+* **deps:** update dependency trivy to v0.60.0 511ff50
+* **deps:** update dependency trivy to v0.61.1 93b6832
+* **deps:** update dependency trivy to v0.62.0 eed14ac
+* **deps:** update dependency trivy to v0.62.1 c789d02
+* **deps:** update dependency trivy to v0.63.0 9037141
+* **deps:** update pre-commit hook alessandrojcm/commitlint-pre-commit-hook to v9.21.0 1eb1508
+* **deps:** update pre-commit hook alessandrojcm/commitlint-pre-commit-hook to v9.22.0 af96877
+* **deps:** update pre-commit hook tofuutils/pre-commit-opentofu to v2.2.0 9d10ca1
+* **deps:** update pre-commit hook tofuutils/pre-commit-opentofu to v2.2.1 95970e4
+* **deps:** update tools 2ae77db
+* **deps:** update tools c61dbd7
+* update Github templates 39552d1
+
 ## 8.0.0 (2025-01-24)
 
 ### ⚠ BREAKING CHANGES
