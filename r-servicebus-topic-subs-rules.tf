@@ -10,21 +10,21 @@ resource "azurerm_servicebus_subscription_rule" "main" {
 
   # Correlation Filter
   dynamic "correlation_filter" {
-    for_each = each.value.rule_conf.filter_type == "CorrelationFilter" && each.value.rule_conf.correlation_filter != null ? [1] : []
+    for_each = each.value.rule_conf.filter_type == "CorrelationFilter" ? each.value.rule_conf.correlation_filter[*] : []
     content {
-      correlation_id      = each.value.rule_conf.correlation_filter.correlation_id
-      content_type        = each.value.rule_conf.correlation_filter.content_type
-      label               = each.value.rule_conf.correlation_filter.label
-      reply_to            = each.value.rule_conf.correlation_filter.reply_to
-      reply_to_session_id = each.value.rule_conf.correlation_filter.reply_to_session_id
-      session_id          = each.value.rule_conf.correlation_filter.session_id
-      to                  = each.value.rule_conf.correlation_filter.to
+      correlation_id      = correlation_filter.value.correlation_id
+      content_type        = correlation_filter.value.content_type
+      label               = correlation_filter.value.label
+      reply_to            = correlation_filter.value.reply_to
+      reply_to_session_id = correlation_filter.value.reply_to_session_id
+      session_id          = correlation_filter.value.session_id
+      to                  = correlation_filter.value.to
 
       # Properties are directly set as a map, not as a dynamic block
-      properties = each.value.rule_conf.correlation_filter.properties
+      properties = correlation_filter.value.properties
     }
   }
 
   # Action - only set if action_type is provided
-  action = each.value.rule_conf.action_type != null ? each.value.rule_conf.action_type : null
+  action = one(each.value.rule_conf.action_type[*])
 }

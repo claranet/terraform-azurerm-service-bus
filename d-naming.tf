@@ -59,7 +59,7 @@ data "azurecaf_name" "servicebus_topic_sub" {
 data "azurecaf_name" "servicebus_topic_sub_rule" {
   for_each = local.subscription_rules
 
-  name          = each.value.rule_name
+  name          = var.stack
   resource_type = "azurerm_servicebus_subscription_rule"
   prefixes      = var.name_prefix == "" ? null : [local.name_prefix]
   suffixes      = compact([var.client_name, var.location_short, var.environment, each.value.rule_name, local.name_suffix])
