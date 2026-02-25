@@ -42,6 +42,10 @@ resource "azurerm_servicebus_namespace" "main" {
     local.default_tags,
     var.extra_tags,
   )
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 moved {
