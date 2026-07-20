@@ -1,3 +1,28 @@
+## 8.1.4 (2026-07-20)
+
+### Bug Fixes
+
+* **tflint:** 🐛 bump Azure rules version, fix signature bug 32c473e
+
+### Miscellaneous Chores
+
+* **deps:** 🔗 update mise conf for OpenTofu e22898a
+* **deps:** update dependency opentofu to v1.12.0 d81e2cd
+* **deps:** update dependency opentofu to v1.12.1 b5b5d51
+* **deps:** update dependency opentofu to v1.12.2 cc73de6
+* **deps:** update dependency opentofu to v1.12.3 af59c7d
+* **deps:** update dependency opentofu to v1.12.4 280c63b
+* **deps:** update dependency terraform-docs to v0.23.0 7206c08
+* **deps:** update dependency tflint to v0.62.1 29a5390
+* **deps:** update dependency tflint to v0.63.1 0c830b9
+* **deps:** update pre-commit hook tofuutils/pre-commit-opentofu to v2.3.0 5f0a5be
+* **deps:** update pre-commit hook tofuutils/pre-commit-opentofu to v2.4.0 5dab277
+* **deps:** update pre-commit hook tofuutils/pre-commit-opentofu to v2.4.1 84e805d
+* **deps:** update pre-commit hook tofuutils/pre-commit-opentofu to v2.4.2 d57af8c
+* **deps:** update tools 5b5e0c8
+* **pre-commit:** 🔧 move to prek 0694f6b
+* **tfdocs:** bump tfdocs to v0.22 🔧 65832c4
+
 ## 8.1.3 (2026-03-27)
 
 ### Bug Fixes
